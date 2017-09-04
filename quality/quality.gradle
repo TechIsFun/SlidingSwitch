@@ -1,0 +1,86 @@
+apply plugin: 'checkstyle'
+apply plugin: 'findbugs'
+apply plugin: 'pmd'
+
+def isJava = plugins.hasPlugin('java')
+
+checkstyle {
+    toolVersion '7.4'
+
+    configFile file("${project.rootDir}/quality/checkstyle/checkstyle.xml")
+    configProperties.checkstyleSuppressionFilterPath = file(
+            "${project.rootDir}/quality/checkstyle/suppressions.xml")
+            .absolutePath
+}
+
+task checkstyle(type: Checkstyle, group: 'verification') {
+    source 'src'
+    include '**/*.java'
+    exclude '**/gen/**'
+    exclude '**/test/**'
+    exclude '**/androidTest/**'
+    exclude '**/R.java'
+    exclude '**/BuildConfig.java'
+    classpath = files()
+}
+
+
+findbugs {
+    toolVersion = "3.0.1"
+    ignoreFailures = false
+    effort = "max"
+    reportLevel = "high"
+    excludeFilter = new File("${project.rootDir}/quality/findbugs/findbugs-filter.xml")
+}
+
+task findbugs(type: FindBugs, dependsOn: "assemble", group: 'verification') {
+    if (isJava) {
+        classes = files("$projectDir.absolutePath/build/classes")
+    } else {
+        classes = files("$projectDir.absolutePath/build/intermediates/classes")
+    }
+    source 'src'
+    include '**/*.java'
+    exclude '**/gen/**'
+
+    reports {
+        // FindBugs tasks can only have one report enabled
+        xml.enabled = false
+        html.enabled = !xml.enabled
+        xml {
+            destination "$projectDir.absolutePath/build/reports/findbugs/findbugs.xml"
+        }
+        html {
+            destination "$projectDir.absolutePath/build/reports/findbugs/findbugs.html"
+        }
+    }
+
+    classpath = files()
+}
+
+
+pmd {
+    toolVersion = '5.5.2'
+    ignoreFailures = true
+    ruleSetFiles = files("${project.rootDir}/quality/pmd/pmd-ruleset.xml")
+    ruleSets = []
+}
+
+task pmd(type: Pmd, group: 'verification') {
+    source 'src'
+    include '**/*.java'
+    exclude('**/gen/**', '**/debug/**')
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+        xml {
+            destination "$projectDir.absolutePath/build/reports/pmd/pmd.xml"
+        }
+        html {
+            destination "$projectDir.absolutePath/build/reports/pmd/pmd.html"
+        }
+    }
+}
+
+apply from: rootProject.file('quality/jacoco.gradle')

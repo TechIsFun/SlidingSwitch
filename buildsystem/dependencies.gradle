@@ -1,0 +1,25 @@
+ext {
+    appCompatVersion = "26.0.1"
+    constraintLayoutVersion = "1.0.2"
+    timberVersion = "4.5.1"
+    butterknifeVersion = "8.5.1"
+    butterknifeProcessorVersion = "8.5.1"
+
+    junitVersion = "4.12"
+    espressoVersion = "2.2.2"
+    mockitoVersion = "2.8.47"
+
+    appLibraries = [
+            supportAppCompat    : "com.android.support:appcompat-v7:${appCompatVersion}",
+            constraintLayout    : "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}",
+            timber              : "com.jakewharton.timber:timber:${timberVersion}",
+            butterknife         : "com.jakewharton:butterknife:${butterknifeVersion}",
+            butterknifeProcessor: "com.jakewharton:butterknife-compiler:${butterknifeProcessorVersion}"
+    ]
+
+    appTest = [
+            junit   : "junit:junit:${junitVersion}",
+            espresso: "com.android.support.test.espresso:espresso-core:${espressoVersion}",
+            mockito : "org.mockito:mockito-core:${mockitoVersion}"
+    ]
+}
