@@ -1,16 +1,16 @@
-package com.github.techisfun.slidingswitch;
+package com.github.techisfun.slidingswitch.app;
 
+import android.app.Application;
 import android.os.StrictMode;
 
 import timber.log.Timber;
 
-/**
- *
- */
-public class DefaultApplication extends SlidingswitchApplication {
+public class SlidingswitchApplication extends Application {
 
     @Override
-    void initialize() {
+    public void onCreate() {
+        super.onCreate();
+
         Timber.plant(new Timber.DebugTree());
 
         // Detect all kind of problems and log it
@@ -24,4 +24,5 @@ public class DefaultApplication extends SlidingswitchApplication {
                 .penaltyLog()
                 .build());
     }
+
 }

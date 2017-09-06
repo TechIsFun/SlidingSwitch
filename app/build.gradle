@@ -4,7 +4,7 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
-        applicationId "com.github.techisfun.slidingswitch"
+        applicationId "com.github.techisfun.slidingswitch.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.gitVersionCode
@@ -47,6 +47,8 @@ android {
 }
 
 dependencies {
+    compile project(':library')
+
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile(rootProject.ext.appTest.espresso, {
         exclude group: 'com.android.support', module: 'support-annotations'

@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.github.techisfun.slidingswitch.SlidingswitchActivity">
+    tools:context=".SlidingswitchActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <com.github.techisfun.slidingswitch.SlidingSwitch
+        android:id="@+id/sliding_switch"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:paddingHorizontal="12dp"
+        app:paddingVertical="8dp"
+        app:firstOption="First option"
+        app:secondOption="Second option"
+        app:backgroundColor="#dce4e6"
+        app:foregroundColor="#fc6c4f"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        />
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>
