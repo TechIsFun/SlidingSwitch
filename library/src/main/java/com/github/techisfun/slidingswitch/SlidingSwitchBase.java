@@ -29,10 +29,10 @@ class SlidingSwitchBase extends View {
     public static final int SHAPE_CIRCLE = 2;
     private static final int RIM_SIZE = 0;
     // 3 attributes
-    private boolean isOpen;
-    private int shape;
+    private boolean mIsOpen;
+    private int mShape;
     // varials of drawing
-    private Paint paint;
+    private Paint mPaint;
     private Rect mBackRect;
     private Rect mFrontRect;
     private RectF mFrontCircleRect;
@@ -51,30 +51,32 @@ class SlidingSwitchBase extends View {
     private int mFgColor;
     private View mClippableView;
 
-    public void setClippableView(View clippableView) {
-        mClippableView = clippableView;
+    public SlidingSwitchBase(Context context) {
+        this(context, null);
     }
 
-    public SlidingSwitchBase(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        mSlideListener = null;
-        paint = new Paint();
-        paint.setAntiAlias(true);
-        TypedArray a = context.obtainStyledAttributes(attrs,
-                R.styleable.SlidingSwitch);
-        isOpen = a.getBoolean(R.styleable.SlidingSwitch_isOpen, false);
-        mBgColor = a.getColor(R.styleable.SlidingSwitch_backgroundColor, Color.BLACK);
-        mFgColor = a.getColor(R.styleable.SlidingSwitch_foregroundColor, Color.GRAY);
-        shape = SHAPE_RECT; //a.getInt(R.styleable.slideswitch_shape, SHAPE_RECT);
-        a.recycle();
-    }
 
     public SlidingSwitchBase(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public SlidingSwitchBase(Context context) {
-        this(context, null);
+    public SlidingSwitchBase(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        mSlideListener = null;
+        mPaint = new Paint();
+        mPaint.setAntiAlias(true);
+        TypedArray a = context.obtainStyledAttributes(attrs,
+                R.styleable.SlidingSwitch);
+        mIsOpen = a.getBoolean(R.styleable.SlidingSwitch_isOpen, false);
+        mBgColor = a.getColor(R.styleable.SlidingSwitch_backgroundColor, Color.BLACK);
+        mFgColor = a.getColor(R.styleable.SlidingSwitch_foregroundColor, Color.GRAY);
+        mShape = SHAPE_RECT; //a.getInt(R.styleable.slideswitch_shape, SHAPE_RECT);
+        a.recycle();
+    }
+
+
+    public void setClippableView(View clippableView) {
+        mClippableView = clippableView;
     }
 
     @Override
@@ -82,7 +84,7 @@ class SlidingSwitchBase extends View {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int width = measureDimension(280, widthMeasureSpec);
         int height = measureDimension(140, heightMeasureSpec);
-        if (shape == SHAPE_CIRCLE) {
+        if (mShape == SHAPE_CIRCLE) {
             if (width < height)
                 width = height * 2;
         }
@@ -99,11 +101,11 @@ class SlidingSwitchBase extends View {
         mFrontRect = new Rect();
         mBackRect = new Rect(0, 0, width, height);
         mMinLeft = RIM_SIZE;
-        if (shape == SHAPE_RECT)
+        if (mShape == SHAPE_RECT)
             mMaxLeft = width / 2;
         else
             mMaxLeft = width - (height - 2 * RIM_SIZE) - RIM_SIZE;
-        if (isOpen) {
+        if (mIsOpen) {
             mFrontRectLeft = mMaxLeft;
             mAlpha = 255;
         } else {
@@ -130,16 +132,16 @@ class SlidingSwitchBase extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        if (shape == SHAPE_RECT) {
-            paint.setColor(mBgColor);
-            canvas.drawRect(mBackRect, paint);
-            paint.setAlpha(mAlpha);
-            canvas.drawRect(mBackRect, paint);
+        if (mShape == SHAPE_RECT) {
+            mPaint.setColor(mBgColor);
+            canvas.drawRect(mBackRect, mPaint);
+            mPaint.setAlpha(mAlpha);
+            canvas.drawRect(mBackRect, mPaint);
             mFrontRect.set(mFrontRectLeft, RIM_SIZE, mFrontRectLeft
                     + getMeasuredWidth() / 2 - RIM_SIZE, getMeasuredHeight()
                     - RIM_SIZE);
-            paint.setColor(mFgColor);
-            canvas.drawRect(mFrontRect, paint);
+            mPaint.setColor(mFgColor);
+            canvas.drawRect(mFrontRect, mPaint);
 
             if (mClippableView != null) {
                 ViewCompat.setClipBounds(mClippableView, mFrontRect);
@@ -148,18 +150,18 @@ class SlidingSwitchBase extends View {
             // draw circle
             int radius;
             radius = mBackRect.height() / 2 - RIM_SIZE;
-            paint.setColor(mBgColor);
+            mPaint.setColor(mBgColor);
             mBackCircleRect.set(mBackRect);
-            canvas.drawRoundRect(mBackCircleRect, radius, radius, paint);
-            paint.setColor(mFgColor);
-            paint.setAlpha(mAlpha);
-            canvas.drawRoundRect(mBackCircleRect, radius, radius, paint);
+            canvas.drawRoundRect(mBackCircleRect, radius, radius, mPaint);
+            mPaint.setColor(mFgColor);
+            mPaint.setAlpha(mAlpha);
+            canvas.drawRoundRect(mBackCircleRect, radius, radius, mPaint);
             mFrontRect.set(mFrontRectLeft, RIM_SIZE, mFrontRectLeft
                     + mBackRect.height() - 2 * RIM_SIZE, mBackRect.height()
                     - RIM_SIZE);
             mFrontCircleRect.set(mFrontRect);
-            paint.setColor(Color.WHITE);
-            canvas.drawRoundRect(mFrontCircleRect, radius, radius, paint);
+            mPaint.setColor(Color.WHITE);
+            canvas.drawRoundRect(mFrontCircleRect, radius, radius, mPaint);
         }
     }
 
@@ -207,13 +209,13 @@ class SlidingSwitchBase extends View {
         if (parent != null) {
 
             switch (event.getAction()) {
-
                 case MotionEvent.ACTION_DOWN:
                     parent.requestDisallowInterceptTouchEvent(true);
                     break;
-
                 case MotionEvent.ACTION_UP:
                     parent.requestDisallowInterceptTouchEvent(true);
+                    break;
+                default:
                     break;
             }
         }
@@ -254,13 +256,13 @@ class SlidingSwitchBase extends View {
         toDestAnim.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
-                if (toRight && !isOpen) {
-                    isOpen = true;
+                if (toRight && !mIsOpen) {
+                    mIsOpen = true;
                     if (mSlideListener != null)
                         mSlideListener.onSecondOptionSelected();
                     mFrontRectLeftBegin = mMaxLeft;
-                } else if (!toRight && isOpen) {
-                    isOpen = false;
+                } else if (!toRight && mIsOpen) {
+                    mIsOpen = false;
                     if (mSlideListener != null)
                         mSlideListener.onFirstOptionSelected();
                     mFrontRectLeftBegin = mMinLeft;
@@ -270,7 +272,7 @@ class SlidingSwitchBase extends View {
     }
 
     public void setState(boolean isOpen) {
-        this.isOpen = isOpen;
+        this.mIsOpen = isOpen;
         initDrawingVal();
         invalidateView();
         if (mSlideListener != null)
@@ -282,7 +284,7 @@ class SlidingSwitchBase extends View {
     }
 
     public void setShapeType(int shapeType) {
-        this.shape = shapeType;
+        this.mShape = shapeType;
     }
 
     public void setSlideable(boolean slideable) {
@@ -293,17 +295,18 @@ class SlidingSwitchBase extends View {
     protected void onRestoreInstanceState(Parcelable state) {
         if (state instanceof Bundle) {
             Bundle bundle = (Bundle) state;
-            this.isOpen = bundle.getBoolean("isOpen");
-            state = bundle.getParcelable("instanceState");
+            this.mIsOpen = bundle.getBoolean("mIsOpen");
+            super.onRestoreInstanceState(bundle.getParcelable("instanceState"));
+        } else {
+            super.onRestoreInstanceState(state);
         }
-        super.onRestoreInstanceState(state);
     }
 
     @Override
     protected Parcelable onSaveInstanceState() {
         Bundle bundle = new Bundle();
         bundle.putParcelable("instanceState", super.onSaveInstanceState());
-        bundle.putBoolean("isOpen", this.isOpen);
+        bundle.putBoolean("mIsOpen", this.mIsOpen);
         return bundle;
     }
 

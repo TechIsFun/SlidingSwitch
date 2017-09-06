@@ -63,7 +63,8 @@ public class SlidingSwitch extends FrameLayout {
         a.recycle();
 
         mSlidingSwitchBase = new SlidingSwitchBase(context, attrs, defStyleAttr);
-        LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT);
         mSlidingSwitchBase.setLayoutParams(params);
         addView(mSlidingSwitchBase);
 
@@ -76,7 +77,8 @@ public class SlidingSwitch extends FrameLayout {
     private LinearLayout addTextLayer(Context context, AttributeSet attrs) {
         LinearLayout linearLayout = new LinearLayout(context, attrs);
         linearLayout.setOrientation(LinearLayout.HORIZONTAL);
-        linearLayout.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        linearLayout.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT));
         addView(linearLayout);
 
         TextView option1 = buildTextView(context, mFirstOption);

@@ -17,7 +17,7 @@ public class SlidingswitchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SlidingSwitch slidingSwitch = findViewById(R.id.sliding_switch);
+        SlidingSwitch slidingSwitch = (SlidingSwitch) findViewById(R.id.sliding_switch);
         slidingSwitch.setSlideListener(new SlideListener() {
             @Override
             public void onSecondOptionSelected() {

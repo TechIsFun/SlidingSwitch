@@ -1,5 +1,5 @@
 ext {
-    appCompatVersion = "26.0.1"
+    appCompatVersion = "25.+"
     constraintLayoutVersion = "1.0.2"
     timberVersion = "4.5.1"
     butterknifeVersion = "8.5.1"
