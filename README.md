@@ -1,5 +1,8 @@
 # SlidingSwitch
 
+[![](https://jitpack.io/v/techisfun/SlidingSwitch.svg)](https://jitpack.io/#techisfun/SlidingSwitch)
+[![Build Status](https://travis-ci.org/TechIsFun/SlidingSwitch.svg?branch=master)](https://travis-ci.org/TechIsFun/SlidingSwitch)
+
 A sliding-switch widget for Android
 
 ![Screencap](img/slidingswitch.gif)
