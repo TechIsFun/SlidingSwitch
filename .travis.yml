@@ -1,27 +1,21 @@
 language: android
 android:
   components:
-    # Uncomment the lines below if you want to
-    # use the latest revision of Android SDK Tools
-    # - tools
-    # - platform-tools
-
-    # The BuildTools version used by your project
-    - build-tools-25.0.2
-
-    # The SDK version used to compile your project
-    - android-25
-
-    # Additional components
-    - extra-google-google_play_services
-    - extra-google-m2repository
-    - extra-android-m2repository
-    - addon-google_apis-google-19
-
-    # Specify at least one system image,
-    # if you need to run emulator(s) during your tests
-    # - sys-img-armeabi-v7a-android-22
-
+  - build-tools-25.0.2
+  - android-25
+  - extra-google-google_play_services
+  - extra-google-m2repository
+  - extra-android-m2repository
+  - addon-google_apis-google-19
 script:
-    # By default Travis-ci executes './gradlew build connectedCheck' if no 'script:' section found.
-    - ./gradlew build
+- "./gradlew build"
+deploy:
+  provider: releases
+  api_key: "$GITHUB_TOKEN"
+  file: library/build/outputs/aar/library-release.aar
+  skip_cleanup: true
+  on:
+    tags: true
+env:
+  global:
+    secure: PGfESBD4YXy2dN4kHozUT+Ewltv/fJaqBexN6nPgQvl4pj1vrvj/YQz/8H0EyZ/7VS2h3NxKhKo/qdpzFGUAur/cuXDYER5Sq0SB4OUdX5waYnfghFmgtLv7CJ21lSvEIYCBfXbmRxhP+gSVomclS6qzSSVhx0dMwwcvh9U+BJKm3/Cxzob9obvS++DEv5BAbifmGZKr2NClmk78F3XAI8Vp93Vq42EJWs0vZybsG9mHUcdIc30R1gdXcU+moIc6/kTs3Mf7qEn43nwnYMqr0WDpGcyN/SePjBPyfJ9+eLNbpN0nE96qvIhqzLFzCow1FiMAVXnHWCyTVDABOIrwCActqU5Rze7bpT1D40wRZ3+kyxMIyVF7vXheQKE2kLeq8H9qliol5fjwN0GD8MA1su/4btnaAvTWWLdQK09IzKrtjd1BvC//pDEkaHn1c35IgqCdbY5/qiIim66UX//5W90FegKEpof9qug/J4LzMsS3eNXC9xnC+7hGhnMRSg7pLeCBi4Z+KZCgFK69JxEGsI3DQ4EpeGe1qG87fE422WO6HoxujMMwQeO0jBIKHVIBZBkAmSYISUOTt/yZaoKuW0Zpv+D/bu9DbxTgH+6aoQ9XXtBpN1eAVYbM1YtuWBR3wsThT2JF/zUOK4IProtFJfjyB9IqrsbJ6sMVuRnGwEI=
