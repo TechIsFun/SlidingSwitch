@@ -2,7 +2,7 @@
 
 A sliding-switch widget for Android
 
-![Screencap][img/slidingswitch.gif]
+![Screencap](img/slidingswitch.gif)
 
 ## Download
 
