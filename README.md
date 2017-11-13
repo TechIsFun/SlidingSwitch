@@ -2,6 +2,7 @@
 
 [![](https://jitpack.io/v/techisfun/SlidingSwitch.svg)](https://jitpack.io/#techisfun/SlidingSwitch)
 [![Build Status](https://travis-ci.org/TechIsFun/SlidingSwitch.svg?branch=master)](https://travis-ci.org/TechIsFun/SlidingSwitch)
+[![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-SlidingSwitch-green.svg?style=flat )]( https://android-arsenal.com/details/1/6447 )
 
 A sliding-switch widget for Android
 
