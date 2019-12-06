@@ -30,11 +30,11 @@ android:
 before_install:
   - yes | sdkmanager "platforms;android-28" "system-images;android-28;default;x86"
   - chmod +x gradlew
+  - echo no | android create avd --force -n test -t "android-"$ANDROID_EMULATOR_LEVEL --abi $ANDROID_ABI --tag $ANDROID_TAG
+  - emulator -avd test -no-audio -no-window &
 
 before_script:
-  - echo no | android create avd --force -n test -t "android-"$ANDROID_EMULATOR_LEVEL --abi $ANDROID_ABI --tag $ANDROID_TAG
-  - emulator -avd test -no-window &
-  - android-wait-for-emulator
+  - ./scripts/android-wait-for-emulator.sh
   - adb shell input keyevent 82 &
 
 before_cache:
