@@ -2,5 +2,4 @@ ext {
     minSdkVersion = 15
     compileSdkVersion = 25
     targetSdkVersion = 25
-    buildToolsVersion = "25.0.2"
 }
