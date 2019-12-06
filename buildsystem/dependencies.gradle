@@ -1,5 +1,5 @@
 ext {
-    appCompatVersion = "25.+"
+    appCompatVersion = "1.1.0"
     constraintLayoutVersion = "1.0.2"
     timberVersion = "4.5.1"
     butterknifeVersion = "8.5.1"
@@ -10,7 +10,7 @@ ext {
     mockitoVersion = "2.8.47"
 
     appLibraries = [
-            supportAppCompat    : "com.android.support:appcompat-v7:${appCompatVersion}",
+            supportAppCompat    : "androidx.appcompat:appcompat:${appCompatVersion}",
             constraintLayout    : "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}",
             timber              : "com.jakewharton.timber:timber:${timberVersion}",
             butterknife         : "com.jakewharton:butterknife:${butterknifeVersion}",

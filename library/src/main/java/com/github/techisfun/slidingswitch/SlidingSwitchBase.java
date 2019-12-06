@@ -14,13 +14,13 @@ import android.graphics.RectF;
 import android.os.Bundle;
 import android.os.Looper;
 import android.os.Parcelable;
-import android.support.v4.view.MotionEventCompat;
-import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewParent;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import androidx.core.view.MotionEventCompat;
+import androidx.core.view.ViewCompat;
 
 
 class SlidingSwitchBase extends View {

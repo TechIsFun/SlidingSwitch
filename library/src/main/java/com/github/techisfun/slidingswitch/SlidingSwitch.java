@@ -1,13 +1,8 @@
 package com.github.techisfun.slidingswitch;
 
-/**
- * @author Andrea Maglie
- */
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -17,6 +12,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 

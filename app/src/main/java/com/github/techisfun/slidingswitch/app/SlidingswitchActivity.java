@@ -1,9 +1,9 @@
 package com.github.techisfun.slidingswitch.app;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 import com.github.techisfun.slidingswitch.SlideListener;
 import com.github.techisfun.slidingswitch.SlidingSwitch;
 
@@ -17,7 +17,7 @@ public class SlidingswitchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SlidingSwitch slidingSwitch = (SlidingSwitch) findViewById(R.id.sliding_switch);
+        SlidingSwitch slidingSwitch = findViewById(R.id.sliding_switch);
         slidingSwitch.setSlideListener(new SlideListener() {
             @Override
             public void onSecondOptionSelected() {
