@@ -271,16 +271,20 @@ class SlidingSwitchBase extends View {
         });
     }
 
-    public void setState(boolean isOpen) {
+    public void setState(boolean isOpen, boolean shouldNotify) {
         this.mIsOpen = isOpen;
         initDrawingVal();
         invalidateView();
-        if (mSlideListener != null)
+        if (shouldNotify && mSlideListener != null)
             if (isOpen == true) {
                 mSlideListener.onSecondOptionSelected();
             } else {
                 mSlideListener.onFirstOptionSelected();
             }
+    }
+
+    public boolean getState() {
+        return mIsOpen;
     }
 
     public void setShapeType(int shapeType) {

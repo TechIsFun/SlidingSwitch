@@ -9,7 +9,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.gitVersionCode
         versionName rootProject.ext.gitVersionName
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         // set the name of the generated apk in the form
         // <projectName>-<versionName>.apk
@@ -47,14 +47,17 @@ android {
 }
 
 dependencies {
-    compile project(':library')
+    implementation project(':library')
 
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile(rootProject.ext.appTest.espresso, {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile rootProject.ext.appLibraries.supportAppCompat
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    testCompile rootProject.ext.appTest.junit
-    testCompile rootProject.ext.appTest.mockito
+    implementation rootProject.ext.appLibraries.supportAppCompat
+
+    testImplementation rootProject.ext.appTest.junit
+    testImplementation rootProject.ext.appTest.mockito
+
+    androidTestImplementation rootProject.ext.appTest.espresso
+    androidTestImplementation rootProject.ext.appTest.espressoContrib
+    androidTestImplementation rootProject.ext.appTest.rules
+    androidTestImplementation rootProject.ext.appTest.junit
 }

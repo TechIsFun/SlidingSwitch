@@ -6,7 +6,8 @@ ext {
     butterknifeProcessorVersion = "8.5.1"
 
     junitVersion = "4.12"
-    espressoVersion = "2.2.2"
+    espressoVersion = "3.1.0"
+    testRules = "1.1.0"
     mockitoVersion = "2.8.47"
 
     appLibraries = [
@@ -19,7 +20,9 @@ ext {
 
     appTest = [
             junit   : "junit:junit:${junitVersion}",
-            espresso: "com.android.support.test.espresso:espresso-core:${espressoVersion}",
+            espresso: "androidx.test.espresso:espresso-core:${espressoVersion}",
+            espressoContrib: "androidx.test.espresso:espresso-contrib:${espressoVersion}",
+            rules: "androidx.test:rules:${testRules}",
             mockito : "org.mockito:mockito-core:${mockitoVersion}"
     ]
 }
