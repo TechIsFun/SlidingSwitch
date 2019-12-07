@@ -20,7 +20,7 @@ before_install:
   #- yes | sdkmanager "platforms;android-28" "system-images;android-28;default;x86"
   - chmod +x gradlew
 
-before_script:
+#before_script:
   #- echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a --tag google_apis
   #- emulator -avd test -noaudio -no-window &
   #- travis_wait 30 android-wait-for-emulator
