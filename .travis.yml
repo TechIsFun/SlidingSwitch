@@ -1,14 +1,44 @@
 language: android
+jdk: oraclejdk8
+
 android:
   components:
-  - build-tools-25.0.2
-  - android-25
-  - extra-google-google_play_services
-  - extra-google-m2repository
-  - extra-android-m2repository
-  - addon-google_apis-google-19
+    - tools
+    - platform-tools
+    - build-tools-28.0.3
+    - android-28
+    - add-on
+    - extra
+    - android-21
+    - sys-img-armeabi-v7a-google_apis-21
+  licenses:
+    - 'android-sdk-preview-license-.+'
+    - 'android-sdk-license-.+'
+    - 'google-gdk-license-.+'
+
+before_install:
+  #- yes | sdkmanager "platforms;android-28" "system-images;android-28;default;x86"
+  - chmod +x gradlew
+
+#before_script:
+  #- echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a --tag google_apis
+  #- emulator -avd test -noaudio -no-window &
+  #- travis_wait 30 android-wait-for-emulator
+  #- adb shell input keyevent 82 &
+
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+    - $HOME/.android/build-cache
+
 script:
-- "./gradlew build"
+- "./gradlew assembleDebug testDebug lint"
+
 deploy:
   provider: releases
   api_key: "$GITHUB_TOKEN"

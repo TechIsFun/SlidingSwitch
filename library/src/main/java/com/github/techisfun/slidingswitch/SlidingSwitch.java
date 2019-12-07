@@ -1,22 +1,19 @@
 package com.github.techisfun.slidingswitch;
 
-/**
- * @author Andrea Maglie
- */
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,6 +63,7 @@ public class SlidingSwitch extends FrameLayout {
         LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT);
         mSlidingSwitchBase.setLayoutParams(params);
+        mSlidingSwitchBase.setId(View.generateViewId());
         addView(mSlidingSwitchBase);
 
         addTextLayer(context, attrs);
@@ -76,6 +74,7 @@ public class SlidingSwitch extends FrameLayout {
 
     private LinearLayout addTextLayer(Context context, AttributeSet attrs) {
         LinearLayout linearLayout = new LinearLayout(context, attrs);
+        linearLayout.setId(View.generateViewId());
         linearLayout.setOrientation(LinearLayout.HORIZONTAL);
         linearLayout.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT));
@@ -119,5 +118,13 @@ public class SlidingSwitch extends FrameLayout {
         for (TextView textView : mOption2) {
             textView.setText(option2);
         }
+    }
+
+    public void setState(boolean isOpen) {
+        mSlidingSwitchBase.setState(isOpen, false);
+    }
+
+    public boolean getState() {
+        return mSlidingSwitchBase.getState();
     }
 }

@@ -1,16 +1,17 @@
 ext {
-    appCompatVersion = "25.+"
+    appCompatVersion = "1.1.0"
     constraintLayoutVersion = "1.0.2"
     timberVersion = "4.5.1"
     butterknifeVersion = "8.5.1"
     butterknifeProcessorVersion = "8.5.1"
 
     junitVersion = "4.12"
-    espressoVersion = "2.2.2"
+    espressoVersion = "3.1.0"
+    testRules = "1.1.0"
     mockitoVersion = "2.8.47"
 
     appLibraries = [
-            supportAppCompat    : "com.android.support:appcompat-v7:${appCompatVersion}",
+            supportAppCompat    : "androidx.appcompat:appcompat:${appCompatVersion}",
             constraintLayout    : "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}",
             timber              : "com.jakewharton.timber:timber:${timberVersion}",
             butterknife         : "com.jakewharton:butterknife:${butterknifeVersion}",
@@ -19,7 +20,9 @@ ext {
 
     appTest = [
             junit   : "junit:junit:${junitVersion}",
-            espresso: "com.android.support.test.espresso:espresso-core:${espressoVersion}",
+            espresso: "androidx.test.espresso:espresso-core:${espressoVersion}",
+            espressoContrib: "androidx.test.espresso:espresso-contrib:${espressoVersion}",
+            rules: "androidx.test:rules:${testRules}",
             mockito : "org.mockito:mockito-core:${mockitoVersion}"
     ]
 }
