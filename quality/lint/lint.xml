@@ -115,7 +115,6 @@
     <issue id="StringFormatCount" severity="ignore" />
     <issue id="StringFormatInvalid" severity="ignore" />
     <issue id="StringFormatMatches" severity="ignore" />
-    <issue id="StyleCycle" severity="ignore" />
     <issue id="Suspicious0dp" severity="error" />
     <issue id="SuspiciousImport" severity="error" />
     <issue id="TextFields" severity="ignore" />

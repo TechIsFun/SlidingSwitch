@@ -17,14 +17,14 @@ android:
     - 'google-gdk-license-.+'
 
 before_install:
-  - yes | sdkmanager "platforms;android-28" "system-images;android-28;default;x86"
+  #- yes | sdkmanager "platforms;android-28" "system-images;android-28;default;x86"
   - chmod +x gradlew
-  - echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a --tag google_apis
-  - emulator -avd test -no-audio -no-window &
 
 before_script:
-  - ./scripts/android-wait-for-emulator.sh
-  - adb shell input keyevent 82 &
+  #- echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a --tag google_apis
+  #- emulator -avd test -noaudio -no-window &
+  #- travis_wait 30 android-wait-for-emulator
+  #- adb shell input keyevent 82 &
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
@@ -37,7 +37,7 @@ cache:
     - $HOME/.android/build-cache
 
 script:
-- "./gradlew build connectedCheck"
+- "./gradlew assembleDebug testDebug lint"
 
 deploy:
   provider: releases
@@ -47,11 +47,5 @@ deploy:
   on:
     tags: true
 env:
-  #- ANDROID_API_LEVEL=27
-  #- ANDROID_EMULATOR_LEVEL=21
-  #- ANDROID_BUILD_TOOLS_VERSION=27.0.3
-  #- ANDROID_ABI=armeabi-v7a
-  #- ANDROID_TAG=google_apis
-  #- ADB_INSTALL_TIMEOUT=20
   global:
     secure: PGfESBD4YXy2dN4kHozUT+Ewltv/fJaqBexN6nPgQvl4pj1vrvj/YQz/8H0EyZ/7VS2h3NxKhKo/qdpzFGUAur/cuXDYER5Sq0SB4OUdX5waYnfghFmgtLv7CJ21lSvEIYCBfXbmRxhP+gSVomclS6qzSSVhx0dMwwcvh9U+BJKm3/Cxzob9obvS++DEv5BAbifmGZKr2NClmk78F3XAI8Vp93Vq42EJWs0vZybsG9mHUcdIc30R1gdXcU+moIc6/kTs3Mf7qEn43nwnYMqr0WDpGcyN/SePjBPyfJ9+eLNbpN0nE96qvIhqzLFzCow1FiMAVXnHWCyTVDABOIrwCActqU5Rze7bpT1D40wRZ3+kyxMIyVF7vXheQKE2kLeq8H9qliol5fjwN0GD8MA1su/4btnaAvTWWLdQK09IzKrtjd1BvC//pDEkaHn1c35IgqCdbY5/qiIim66UX//5W90FegKEpof9qug/J4LzMsS3eNXC9xnC+7hGhnMRSg7pLeCBi4Z+KZCgFK69JxEGsI3DQ4EpeGe1qG87fE422WO6HoxujMMwQeO0jBIKHVIBZBkAmSYISUOTt/yZaoKuW0Zpv+D/bu9DbxTgH+6aoQ9XXtBpN1eAVYbM1YtuWBR3wsThT2JF/zUOK4IProtFJfjyB9IqrsbJ6sMVuRnGwEI=
