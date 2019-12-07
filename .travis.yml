@@ -1,51 +1,38 @@
 language: android
 jdk: oraclejdk8
-
 android:
   components:
-    - tools
-    - platform-tools
-    - build-tools-28.0.3
-    - android-28
-    - add-on
-    - extra
-    - android-21
-    - sys-img-armeabi-v7a-google_apis-21
+  - tools
+  - platform-tools
+  - build-tools-28.0.3
+  - android-28
+  - add-on
+  - extra
+  - android-21
+  - sys-img-armeabi-v7a-google_apis-21
   licenses:
-    - 'android-sdk-preview-license-.+'
-    - 'android-sdk-license-.+'
-    - 'google-gdk-license-.+'
-
+  - android-sdk-preview-license-.+
+  - android-sdk-license-.+
+  - google-gdk-license-.+
 before_install:
-  #- yes | sdkmanager "platforms;android-28" "system-images;android-28;default;x86"
-  - chmod +x gradlew
-
-#before_script:
-  #- echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a --tag google_apis
-  #- emulator -avd test -noaudio -no-window &
-  #- travis_wait 30 android-wait-for-emulator
-  #- adb shell input keyevent 82 &
-
+- chmod +x gradlew
 before_cache:
-  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
-
+- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 cache:
   directories:
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
-    - $HOME/.android/build-cache
-
+  - "$HOME/.gradle/caches/"
+  - "$HOME/.gradle/wrapper/"
+  - "$HOME/.android/build-cache"
 script:
 - "./gradlew assembleDebug testDebug lint"
-
 deploy:
   provider: releases
-  api_key: "$GITHUB_TOKEN"
+  api_key:
+    secure: G4Y3lxx7yoyPNI8yD96sHZKBVHXF7N2S3UGc2950pd/a0Y0Grbl/6e3/RAiS9o9EMO3nk3WGedghalPll4fW1DxSsPl72WOhc6K8EsSaP/1IRGekGfTF8+9WIWIfnOP9QFYO89czhjXRtEh1pS40B8JEl4MkvcCNFJThuvaME8JbZ0Bc16bjrDSTAdDHgWVmYLbp0/hMk2jGxOEjr8P19mArHQDUQVFx9zLI/cTsrMi64kt8PVjH5VvIUKi1r8H1RRYdNsc+/src12UP5n0dWs1T/ONarj9+vQFTPy8KRMzY9fRgAkwytt6mfKUIlaq63rUTTEDRMPA8E2lgyckEO2GQ2wMobd63gK4pY2ByQ862bwTGDuaxnhxDHyUAudVMUNCQ4szgfI/hmRzoK9nByjK4X4/HhbhDo9ScG4jYV/fEwWB7Jh+V2FRe2F65LyvQzSE8WY5ux5ZRPXtoipuE3OORXscvRaClwGjiGKL+pCqJz7jql5m8oPEJAS3QuhtnClYo/Gjkya/8kpd5kdtmtbfTYVnmTtdAx7zowgqatfkzd8jTKJCElNT7l8rksjS5DRL7+LyRDme+0jAt6Rg+lCoMOEL4/AMUIdP6DesWmNleS9QG61//fekziYG2h7m1IYcQcRhzqxBrjeIYwWSdt64k45zAHADm/+vQ+ZVf3ws=
   file: library/build/outputs/aar/library-release.aar
-  skip_cleanup: true
   on:
-    tags: true
+    repo: TechIsFun/SlidingSwitch
 env:
   global:
     secure: PGfESBD4YXy2dN4kHozUT+Ewltv/fJaqBexN6nPgQvl4pj1vrvj/YQz/8H0EyZ/7VS2h3NxKhKo/qdpzFGUAur/cuXDYER5Sq0SB4OUdX5waYnfghFmgtLv7CJ21lSvEIYCBfXbmRxhP+gSVomclS6qzSSVhx0dMwwcvh9U+BJKm3/Cxzob9obvS++DEv5BAbifmGZKr2NClmk78F3XAI8Vp93Vq42EJWs0vZybsG9mHUcdIc30R1gdXcU+moIc6/kTs3Mf7qEn43nwnYMqr0WDpGcyN/SePjBPyfJ9+eLNbpN0nE96qvIhqzLFzCow1FiMAVXnHWCyTVDABOIrwCActqU5Rze7bpT1D40wRZ3+kyxMIyVF7vXheQKE2kLeq8H9qliol5fjwN0GD8MA1su/4btnaAvTWWLdQK09IzKrtjd1BvC//pDEkaHn1c35IgqCdbY5/qiIim66UX//5W90FegKEpof9qug/J4LzMsS3eNXC9xnC+7hGhnMRSg7pLeCBi4Z+KZCgFK69JxEGsI3DQ4EpeGe1qG87fE422WO6HoxujMMwQeO0jBIKHVIBZBkAmSYISUOTt/yZaoKuW0Zpv+D/bu9DbxTgH+6aoQ9XXtBpN1eAVYbM1YtuWBR3wsThT2JF/zUOK4IProtFJfjyB9IqrsbJ6sMVuRnGwEI=
