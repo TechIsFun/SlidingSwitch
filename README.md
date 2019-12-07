@@ -12,7 +12,7 @@ A sliding-switch widget for Android
 
 ```
 dependencies {
-  compile 'com.github.techisfun:slidingswitch:0.2'
+  compile 'com.github.techisfun:slidingswitch:0.3'
 }
 ```
 
