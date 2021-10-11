@@ -1,0 +1,5 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# https://github.com/typicode/husky/issues/861
+npx -c --no-install commitlint --edit "$1"
